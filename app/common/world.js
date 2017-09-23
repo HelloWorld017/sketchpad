@@ -1,5 +1,8 @@
-class World{
+import EventEmitter from 'events';
+
+class World extends EventEmitter {
 	constructor(renderer, {background, updateTick, fps}){
+		super();
 		this.screen = renderer.screen;
 		this.renderer = renderer;
 		this.objects = [];
@@ -53,6 +56,10 @@ class World{
 			.concat(this.creationCache);
 		this.creationCache = [];
 		setTimeout(this.updateWorld, this.updateTick);
+	}
+
+	refreshSettings() {
+		this.emit('settings.refresh');
 	}
 
 	init(){

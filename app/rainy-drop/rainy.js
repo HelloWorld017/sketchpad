@@ -3,8 +3,8 @@ import Color from "color";
 import Object from "../common/object";
 import Renderer from "../common/renderer";
 import World from "../common/world";
+import {filter} from "../common/mixin";
 
-const filter = (initial, val) =>  (typeof val === 'undefined') ? initial : val;
 const chorus = new Chorus(4, 2.5, 0.5).toMaster();
 const pingpong = new PingPongDelay("64n", 0.2).connect(chorus);
 
@@ -178,15 +178,15 @@ class DefaultCloud extends Object{
 	}
 }
 
-export default () => {
-	const world = new World(Renderer.createMainRenderer(), {
+export default (canvas) => {
+	const world = new World(canvas instanceof Renderer ? canvas : new Renderer(canvas), {
 		updateTick: 25,
 		fps: 30,
 
 		background(ctx, screen) {
 			const background = ctx.createLinearGradient(0, 0, 0, screen.height);
-			background.addColorStop(0, '#734b6d');
-			background.addColorStop(1, '#42275a');
+			background.addColorStop(0, '#232526');
+			background.addColorStop(1, '#414345');
 
 			return background;
 		}
@@ -220,15 +220,21 @@ export default () => {
 	world.bindToRenderer();
 	world.init();
 
+	world.on('settings.refresh', () => {
+		if(world.configs.rainSoundEnabled) {
+			const iframe = document.createElement('iframe');
+			iframe.width = 1;
+			iframe.height = 1;
+			iframe.src = "https://www.youtube-nocookie.com/embed/jX6kn9_U8qk?rel=0&loop=1&autoplay=1&disablekb=1&controls=0&showinfo=0";
+			iframe.style.border = '0';
+
+			document.body.append(iframe);
+		}
+	});
+
 	world.configs.soundEnabled = false;
+	world.configs.rainSoundEnabled = false;
+	world.refreshSettings();
 
-	const iframe = document.createElement('iframe');
-	iframe.width = 1;
-	iframe.height = 1;
-	iframe.src = "https://www.youtube-nocookie.com/embed/jX6kn9_U8qk?rel=0&loop=1&autoplay=1&disablekb=1&controls=0&showinfo=0";
-	iframe.style.border = '0';
-
-	document.body.append(iframe);
-	
 	window.world = world;
 };
