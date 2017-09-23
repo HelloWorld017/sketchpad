@@ -4,5 +4,3 @@ import firework from "./fireworks/fireworks";
 import Renderer from './common/renderer';
 
 export default {rainy, firework, Renderer};
-
-rainy(Renderer.createMainRenderer());
