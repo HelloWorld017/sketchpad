@@ -183,12 +183,14 @@ class DefaultLauncher extends Object{
 	}
 }
 
-export default (canvas) => {
+export default (canvas, background) => {
 	const world = new World(canvas instanceof Renderer ? canvas : new Renderer(canvas), {
 		updateTick: 25,
 		fps: 30,
 
 		background(ctx, screen) {
+			if(background) return background;
+			
 			const background = ctx.createLinearGradient(0, 0, 0, screen.height);
 			background.addColorStop(0, '#734b6d');
 			background.addColorStop(1, '#42275a');
@@ -201,6 +203,4 @@ export default (canvas) => {
 	world.addObjectToWorld(launcher);
 	world.bindToRenderer();
 	world.init();
-
-	window.world = world;
 };
