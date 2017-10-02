@@ -1,5 +1,5 @@
-import rainy from "./rainy-drop/rainy";
-import firework from "./fireworks/fireworks";
+import rainy from './rainy-drop/rainy';
+import firework from './fireworks/fireworks';
 
 import Renderer from './common/renderer';
 

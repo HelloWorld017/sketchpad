@@ -189,9 +189,9 @@ export default (canvas, background) => {
 		fps: 30,
 
 		background(ctx, screen) {
-			if(background) return background;
-			
-			const background = ctx.createLinearGradient(0, 0, 0, screen.height);
+			if(bg) return bg;
+
+			const bg = ctx.createLinearGradient(0, 0, 0, screen.height);
 			background.addColorStop(0, '#734b6d');
 			background.addColorStop(1, '#42275a');
 

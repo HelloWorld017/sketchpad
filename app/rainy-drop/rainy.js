@@ -178,14 +178,14 @@ class DefaultCloud extends Object{
 	}
 }
 
-export default (canvas, background) => {
+export default (canvas, bg) => {
 	const world = new World(canvas instanceof Renderer ? canvas : new Renderer(canvas), {
 		updateTick: 25,
 		fps: 30,
 
 		background(ctx, screen) {
-			if(background) return background;
-			
+			if(bg) return bg;
+
 			const background = ctx.createLinearGradient(0, 0, 0, screen.height);
 			background.addColorStop(0, '#232526');
 			background.addColorStop(1, '#414345');

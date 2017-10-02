@@ -1,8 +1,8 @@
 {
   "name": "sketchless",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
-  "main": "app/index.js",
+  "main": "dist/sketchless.bundle.js",
   "dependencies": {
     "color": "^1.0.3",
     "tone": "^0.10.0"

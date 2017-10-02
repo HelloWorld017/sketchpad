@@ -7,7 +7,9 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/dist/',
-		filename: 'sketchpad.bundle.js'
+		filename: 'sketchless.bundle.js',
+		library: 'sketchless',
+		libraryTarget: 'umd'
 	},
 
 	module: {
